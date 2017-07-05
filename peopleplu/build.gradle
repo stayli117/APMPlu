@@ -1,0 +1,40 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:2.2.3'
+    compile 'org.javassist:javassist:3.20.0-GA'
+    compile 'commons-io:commons-io:1.4'
+    compile 'commons-codec:commons-codec:1.6'
+    // 支持库
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+//group和version在后面使用自定义插件的时候会用到
+group = 'net.people.aplu'
+version = '1.0.0'
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+//            repository(url: "http://192.168.1.143:8081/nexus/content/repositories/thirdparty") {
+//                authentication(userName: "admin", password: "admin123")
+//            }
+
+            //本地的Maven地址设置为D:/repos
+
+            repository(url: uri('D:/maven/repos'))
+
+        }
+    }
+}
